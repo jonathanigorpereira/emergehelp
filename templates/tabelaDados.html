@@ -1,0 +1,30 @@
+<table class="table user-table" id="tabelaBatimentos">
+    <thead>
+        <tr>
+            <th class="border-top-0">Data</th>
+            <th class="border-top-0">Batimentos Cardíacos</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+$(function(){
+setInterval(function(){
+    $.ajax({
+        url: '/homeDadosTabela',
+        type: 'GET',
+        dataType: "json",
+        success: function (response) {
+            var trHTML = '';
+            $.each(response, function (i, item) {
+                trHTML += '<tr><td>' + item.date + '</td><td>' + item.data + '</td></tr>';
+            });
+            document.getElementById('tabelaBatimentos').innerHTML = trHTML;
+            console.log('aqui');
+        }
+    });
+}, 3000);
+});
+</script>
