@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 random()
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Caneta21*@localhost:3306/api_flask'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://emerghelp1:vendas123@emerghelp1.mysql.pythonanywhere-services.com:3306/emerghelp1$default'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Caneta21*@mysqlserver.cshofkaxx4ka.sa-east-1.rds.amazonaws.com:3306/emerghelp'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'testechavesecreta'
 app.permanent_session_lifetime = timedelta(minutes=10)
