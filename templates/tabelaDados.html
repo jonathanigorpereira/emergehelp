@@ -1,11 +1,13 @@
-<table class="table user-table" id="tabelaBatimentos">
+<!-- Custom CSS -->
+<link href="../static/css/style.min.css" rel="stylesheet">
+<table class="table user-table" >
     <thead>
         <tr>
-            <th class="border-top-0">Data</th>
-            <th class="border-top-0">Batimentos Cardíacos</th>
+            <th class="border-top-0" style="align-items: center;">Data</th>
+            <th class="border-top-0" style="align-items: center;">Batimentos Cardíacos</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tabelaBatimentos">
     </tbody>
 </table>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -19,7 +21,7 @@ setInterval(function(){
         success: function (response) {
             var trHTML = '';
             $.each(response, function (i, item) {
-                trHTML += '<tr><td>' + item.date + '</td><td>' + item.data + '</td></tr>';
+                trHTML += '<tr><td style="align-content: center;">' + item.date + '</td><td style="align-content: center;">' + item.data + '</td></tr>';
             });
             document.getElementById('tabelaBatimentos').innerHTML = trHTML;
             console.log('aqui');

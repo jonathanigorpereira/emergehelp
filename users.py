@@ -168,6 +168,33 @@ def inserirDados():
     return data.jsonify(dados), 200
 
 
+@bp_users.route('/insertDadosApp', methods=['POST'])
+def insertDadosApp():
+    id_user = request.json['id_user']
+    data_atual = request.json['date']
+    batimento = request.json['data']
+
+    # verifica se tem vazio
+    if (id_user == "") or (data_atual == "") or (batimento == ""):
+        return jsonify("Verificar se os dados estão corretos"), 401
+
+    data = DatasSchema()
+    dados = Datas()
+    dados.id_user = id_user
+    dados.date = data_atual
+    dados.data = batimento
+    print(dados)
+
+    # salva no banco os dados
+    current_app.db.session.add(dados)
+    try:
+        current_app.db.session.commit()
+    except:
+        return data.jsonify("Erro"), 401
+
+    return data.jsonify(dados), 201
+
+
 @bp_users.route('/logout')
 def logout():
     logout_user()
