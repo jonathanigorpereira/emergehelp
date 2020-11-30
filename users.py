@@ -96,13 +96,18 @@ def profile():
     return render_template('profile.html')
 
 
+@bp_users.route('/RelatorioSimples')
+def RelatorioSimples():
+    return render_template('table.html')
+
+
 @bp_users.route('/ListDatas')
 def ListDatas():
     datas = DatasSchema(many=True)
     my_user = current_user.get_id()
     result = Datas.query.join(Users, Users.id == Datas.id_user).filter(
-        Datas.id_user == my_user).all()
-    return render_template('table.html', result=result)
+        Datas.id_user == my_user).order_by(Datas.id.desc()).all()
+    return datas.jsonify(result), 200
 
 
 @bp_users.route('/GenerateSimpleReport', methods=['GET', 'POST'])

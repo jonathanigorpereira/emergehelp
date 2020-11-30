@@ -17,6 +17,7 @@
      <link rel="icon" type="image/png" sizes="16x16" href="https://img.icons8.com/cotton/64/000000/doctors-folder.png">
     <!-- Custom CSS -->
     <link href="../static/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 </head>
 <body>
     <div class="preloader">
@@ -131,7 +132,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table user-table">
+                                    <table class="table user-table" id="table_dados" style="align-content: center; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th class="border-top-0">Data</th>
@@ -139,14 +140,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                {%for res in result %}
+                                                <!-- {%for res in result %}
                                                     {% if current_user.is_authenticated %}
                                                     <tr>
                                                         <td>{{res.date}}</td>
                                                         <td>{{res.data}}</td>
                                                     </tr>
                                                     {% endif %}
-                                                {% endfor %}
+                                                {% endfor %} -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -169,6 +170,25 @@
     <script src="../static/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="../static/js/custom.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utfo" src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                    'url': "/ListDatas",
+                    'method': "GET",
+                    'contentType': 'application/json'
+            }).done( function(data) {
+                    $('#table_dados').dataTable( {
+                        "aaData": data,
+                        "columns": [
+                            { "data": "date" },
+                            { "data": "data" }
+                        ]
+                    })
+                });
+        });
+        </script>
 </body>
 
 </html>

@@ -29,6 +29,7 @@ class Users(db.Model, UserMixin):
 class Datas(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_user = db.Column(db.Integer, db.ForeignKey(Users.id), unique=False)
-    date = db.Column(db.DateTime, default=datetime.now)
+    date = db.Column(
+        db.String(255), default=datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
     id_category = db.Column(db.Integer, unique=False)
     data = db.Column(db.String(255), nullable=False)
